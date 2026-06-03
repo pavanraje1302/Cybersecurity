@@ -1,0 +1,133 @@
+1. Process Check
+ps
+
+PID
+TTY
+TIME
+CMD
+
+2. Identify firefox process
+
+Open Firefox
+firefox
+Leave it running.
+
+Open new terminal
+ps aux | grep firefox
+
+Find:
+PID
+
+3. Monitor live processes
+top
+
+Observe:
+CPU
+Memory
+Running Processes
+
+4. sleep process
+Run:
+sleep 500 &
+Check:
+jobs
+Find PID:
+ps aux | grep sleep
+
+
+5. Terminate process
+kill PID
+Verify:
+jobs
+
+6. Find hostname
+hostname
+
+Change hostname
+sudo hostnamectl set-hostname student01
+Verify:
+hostname
+
+7. Explore Your Network Identity
+ip a
+
+Find:
+lo
+eth0
+
+Create Table
+Interface	IP
+lo	127.0.0.1
+eth0	Student IP
+
+8. Internet Detective
+Test 1
+ping 127.0.0.1
+
+Test 2
+ping 8.8.8.8
+
+Test 3
+ping google.com
+
+9. DNS Investigator
+
+Install:
+sudo apt install dnsutils -y
+
+Investigate
+nslookup google.com
+nslookup youtube.com
+nslookup openai.com
+
+10. Journey of a Packet
+Install:
+sudo apt install traceroute -y
+Run:
+traceroute google.com
+Observe:
+Hop 1
+Hop 2
+Hop 3
+...
+
+11. Create Your Own Web Server
+Install Apache
+sudo apt update
+sudo apt install apache2 -y
+
+Start Service
+sudo systemctl start apache2
+
+Verify
+Open browser
+http://localhost
+Apache page appears.
+
+Challenge
+Replace webpage.
+cd /var/www/html
+Backup:
+sudo mv index.html index_backup.html
+Create:
+sudo vim index.html
+Add:
+<h1>Cybersecurity Lab</h1>
+<h2>Student Name</h2>
+Refresh browser
+
+12. Secret Chat Server
+Install:
+sudo apt install netcat-traditional -y
+
+Terminal 1
+nc -lvp 4444
+
+Terminal 2
+nc 127.0.0.1 4444
+
+Send Messages
+Hello
+Cybersecurity
+Testing
+
