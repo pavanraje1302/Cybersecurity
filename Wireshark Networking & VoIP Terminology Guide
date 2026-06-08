@@ -1,0 +1,729 @@
+# Wireshark Networking & VoIP Terminology Guide
+
+This guide explains the most important networking and VoIP terms that students commonly encounter while using Wireshark for packet analysis.
+
+---
+
+# 1. TCP (Transmission Control Protocol)
+
+## Full Form
+
+Transmission Control Protocol
+
+## Purpose
+
+Provides reliable communication between two devices.
+
+## Features
+
+- Reliable
+- Connection-Oriented
+- Error Checking
+- Ordered Delivery
+
+## Examples
+
+- HTTP
+- HTTPS
+- SSH
+- FTP
+
+## Real-Life Example
+
+Sending a registered courier:
+
+```text
+Sender → Courier → Receiver
+Confirmation Received
+```
+
+TCP ensures data reaches the destination correctly.
+
+---
+
+# 2. UDP (User Datagram Protocol)
+
+## Full Form
+
+User Datagram Protocol
+
+## Purpose
+
+Provides fast communication with minimal overhead.
+
+## Features
+
+- Fast
+- Connectionless
+- No delivery guarantee
+- No ordering guarantee
+
+## Examples
+
+- VoIP Calls
+- Video Streaming
+- Online Gaming
+- DNS
+
+## Real-Life Example
+
+A live radio broadcast:
+
+```text
+Broadcast Starts
+↓
+Missed Part = Lost Forever
+```
+
+---
+
+# TCP vs UDP
+
+| Feature | TCP | UDP |
+|----------|----------|----------|
+| Reliable | Yes | No |
+| Fast | No | Yes |
+| Connection Required | Yes | No |
+| Error Checking | Yes | Limited |
+| Examples | HTTP, HTTPS, SSH | RTP, DNS, Streaming |
+
+---
+
+# 3. SYN (Synchronize)
+
+## Purpose
+
+Initiates a TCP connection.
+
+## Meaning
+
+```text
+"Can we start communication?"
+```
+
+## Example
+
+Client:
+
+```text
+SYN
+```
+
+---
+
+# 4. ACK (Acknowledgement)
+
+## Purpose
+
+Confirms receipt of data.
+
+## Meaning
+
+```text
+"I received your message."
+```
+
+## Example
+
+Server:
+
+```text
+ACK
+```
+
+---
+
+# 5. SYN-ACK
+
+## Purpose
+
+Acknowledges a SYN request and agrees to communicate.
+
+## Meaning
+
+```text
+"I received your request and I'm ready."
+```
+
+---
+
+# 6. FIN (Finish)
+
+## Purpose
+
+Gracefully terminates a TCP connection.
+
+## Meaning
+
+```text
+"I have finished communication."
+```
+
+---
+
+# 7. RST (Reset)
+
+## Purpose
+
+Immediately terminates a connection.
+
+## Meaning
+
+```text
+"Connection aborted."
+```
+
+---
+
+# TCP Three-Way Handshake
+
+Before communication begins:
+
+```text
+Client
+   |
+   | SYN
+   v
+Server
+
+Client
+   <----------------
+        SYN-ACK
+
+Client
+   ---------------->
+          ACK
+
+Connection Established
+```
+
+---
+
+# 8. SIP (Session Initiation Protocol)
+
+## Full Form
+
+Session Initiation Protocol
+
+## Purpose
+
+Used to establish, manage, and terminate VoIP calls.
+
+## Think of SIP as
+
+```text
+Call Manager
+```
+
+SIP handles:
+
+- Calling
+- Ringing
+- Call Acceptance
+- Call Termination
+
+## Common Applications
+
+- Linphone
+- Zoiper
+- Softphones
+- IP Telephony
+
+---
+
+# SIP Call Flow
+
+```text
+Caller
+   |
+   | INVITE
+   v
+
+Receiver
+
+100 Trying
+
+180 Ringing
+
+200 OK
+
+ACK
+
+Voice Communication Starts
+
+BYE
+
+Call Ends
+```
+
+---
+
+# Common SIP Messages
+
+## INVITE
+
+Meaning:
+
+```text
+"I want to call you."
+```
+
+---
+
+## 100 Trying
+
+Meaning:
+
+```text
+"I received your request."
+```
+
+---
+
+## 180 Ringing
+
+Meaning:
+
+```text
+"The phone is ringing."
+```
+
+---
+
+## 200 OK
+
+Meaning:
+
+```text
+"The call has been accepted."
+```
+
+---
+
+## ACK
+
+Meaning:
+
+```text
+"I received your acceptance."
+```
+
+Voice communication begins.
+
+---
+
+## BYE
+
+Meaning:
+
+```text
+"The call is over."
+```
+
+---
+
+# 9. RTP (Real-time Transport Protocol)
+
+## Full Form
+
+Real-time Transport Protocol
+
+## Purpose
+
+Carries voice and video data during a VoIP call.
+
+## Think of RTP as
+
+```text
+Voice Carrier
+```
+
+While SIP sets up the call:
+
+```text
+SIP → Creates Call
+RTP → Carries Voice
+```
+
+---
+
+# SIP vs RTP
+
+| SIP | RTP |
+|-------|-------|
+| Establishes Call | Transfers Voice |
+| Manages Session | Carries Audio |
+| Handles Ringing | Handles Conversation |
+| Controls Call | Transports Media |
+
+---
+
+# VoIP Communication Flow
+
+```text
+Linphone
+
+SIP INVITE
+      ↓
+
+Call Accepted
+
+      ↓
+
+RTP Packets Start
+
+      ↓
+
+Voice Communication
+```
+
+---
+
+# 10. DNS (Domain Name System)
+
+## Full Form
+
+Domain Name System
+
+## Purpose
+
+Converts domain names into IP addresses.
+
+## Example
+
+```text
+google.com
+      ↓
+142.250.x.x
+```
+
+## Real-Life Example
+
+DNS works like a phonebook:
+
+```text
+Name
+ ↓
+Phone Number
+```
+
+---
+
+# 11. ICMP (Internet Control Message Protocol)
+
+## Full Form
+
+Internet Control Message Protocol
+
+## Purpose
+
+Used for diagnostics and network testing.
+
+## Common Tool
+
+```bash
+ping
+```
+
+## Example
+
+```text
+Computer A
+   ↓
+"Are you alive?"
+
+Computer B
+   ↓
+"Yes, I am alive."
+```
+
+---
+
+# 12. HTTP (HyperText Transfer Protocol)
+
+## Full Form
+
+HyperText Transfer Protocol
+
+## Purpose
+
+Transfers web pages between browser and server.
+
+## Default Port
+
+```text
+80
+```
+
+## Example
+
+```text
+Browser
+    ↓
+HTTP Request
+    ↓
+Web Server
+    ↓
+HTTP Response
+```
+
+---
+
+# 13. HTTPS (HyperText Transfer Protocol Secure)
+
+## Full Form
+
+HyperText Transfer Protocol Secure
+
+## Purpose
+
+Encrypted web communication.
+
+## Default Port
+
+```text
+443
+```
+
+## Difference from HTTP
+
+| HTTP | HTTPS |
+|--------|--------|
+| Not Encrypted | Encrypted |
+| Port 80 | Port 443 |
+| Less Secure | More Secure |
+
+---
+
+# 14. SSH (Secure Shell)
+
+## Full Form
+
+Secure Shell
+
+## Purpose
+
+Secure remote login to Linux systems.
+
+## Default Port
+
+```text
+22
+```
+
+## Example
+
+```bash
+ssh user@192.168.1.10
+```
+
+---
+
+# 15. FTP (File Transfer Protocol)
+
+## Full Form
+
+File Transfer Protocol
+
+## Purpose
+
+Transfers files between systems.
+
+## Default Port
+
+```text
+21
+```
+
+---
+
+# 16. DHCP (Dynamic Host Configuration Protocol)
+
+## Full Form
+
+Dynamic Host Configuration Protocol
+
+## Purpose
+
+Automatically assigns IP addresses.
+
+## Example
+
+```text
+Connect Laptop
+      ↓
+DHCP Assigns IP
+      ↓
+Internet Access Available
+```
+
+---
+
+# 17. ARP (Address Resolution Protocol)
+
+## Full Form
+
+Address Resolution Protocol
+
+## Purpose
+
+Converts IP Address into MAC Address.
+
+## Example
+
+```text
+Known:
+192.168.1.10
+
+Need:
+MAC Address
+
+ARP Request
+      ↓
+ARP Reply
+```
+
+---
+
+# Important Wireshark Filters
+
+## ICMP
+
+```text
+icmp
+```
+
+Shows ping traffic.
+
+---
+
+## DNS
+
+```text
+dns
+```
+
+Shows DNS queries and responses.
+
+---
+
+## HTTP
+
+```text
+http
+```
+
+Shows web traffic.
+
+---
+
+## TCP
+
+```text
+tcp
+```
+
+Shows TCP packets.
+
+---
+
+## UDP
+
+```text
+udp
+```
+
+Shows UDP packets.
+
+---
+
+## SIP
+
+```text
+sip
+```
+
+Shows SIP signaling traffic.
+
+---
+
+## RTP
+
+```text
+rtp
+```
+
+Shows RTP voice streams.
+
+---
+
+## Specific Port
+
+```text
+tcp.port == 80
+```
+
+Shows HTTP traffic.
+
+```text
+tcp.port == 443
+```
+
+Shows HTTPS traffic.
+
+```text
+udp.port == 5060
+```
+
+Shows SIP traffic.
+
+---
+
+# Quick Revision Table
+
+| Term | Full Form | Purpose |
+|--------|------------|----------|
+| TCP | Transmission Control Protocol | Reliable Communication |
+| UDP | User Datagram Protocol | Fast Communication |
+| SYN | Synchronize | Start Connection |
+| ACK | Acknowledgement | Confirm Receipt |
+| FIN | Finish | End Connection |
+| RST | Reset | Force Close Connection |
+| SIP | Session Initiation Protocol | Call Setup |
+| RTP | Real-time Transport Protocol | Voice Transport |
+| DNS | Domain Name System | Domain → IP |
+| ICMP | Internet Control Message Protocol | Ping |
+| HTTP | HyperText Transfer Protocol | Web Communication |
+| HTTPS | HyperText Transfer Protocol Secure | Secure Web Communication |
+| SSH | Secure Shell | Remote Login |
+| FTP | File Transfer Protocol | File Transfer |
+| DHCP | Dynamic Host Configuration Protocol | Assign IP Address |
+| ARP | Address Resolution Protocol | IP → MAC Mapping |
+
+---
+
+# Easy Memory Tricks
+
+```text
+SYN  = Let's Start Talking
+
+ACK  = I Received It
+
+FIN  = Let's End Talking
+
+TCP  = Reliable Data
+
+UDP  = Fast Data
+
+DNS  = Finds IP Address
+
+ICMP = Ping
+
+HTTP = Website
+
+HTTPS = Secure Website
+
+SIP  = Starts the Call
+
+RTP  = Carries the Voice
+```
