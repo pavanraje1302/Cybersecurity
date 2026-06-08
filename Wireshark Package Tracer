@@ -1,0 +1,134 @@
+🖥️ Lab 1: Understanding Network Interfaces
+
+Step 1: Open Wireshark as Administrator.
+
+Step 2: Open Command Prompt (cmd) and run ipconfig.
+
+Step 3: Note the adapter with an active IPv4 Address.
+
+Step 4: In Wireshark, match that adapter with the active sparkline graph (e.g., Wi-Fi or Ethernet).
+
+
+
+
+
+
+📡 Lab 2: Your First Packet Capture
+
+Step 1: Double-click your active interface in Wireshark to start capturing.
+
+Step 2: Open cmd and run ping 8.8.8.8 -t. Let it run for 10 seconds.
+
+Step 3: Press Ctrl + C in cmd to stop the ping.
+
+Step 4: Click the Red Square 🟥 in Wireshark to stop the capture.
+
+
+
+
+
+
+🔍 Lab 3: Filtering the Noise (ICMP)
+
+Step 1: Type icmp in the display filter bar and press Enter.
+
+Step 2: Click on an Echo (ping) request packet.
+
+Step 3: In the middle pane, expand Internet Protocol Version 4 to see Source/Destination IPs.
+
+Step 4: Expand Internet Control Message Protocol to see Type 8 (Request) or Type 0 (Reply).
+
+
+
+
+
+
+
+🦴 Lab 4: Understanding Packet Anatomy
+
+Step 1: Select any packet from the list.
+
+Step 2: Pane 1 (Top): Review the summary (Time, Source, Destination, Protocol, Info).
+
+Step 3: Pane 2 (Middle): Review the OSI layers (Frame, Ethernet II, IPv4, Protocol). Expand Ethernet II to find MAC Addresses.
+
+Step 4: Pane 3 (Bottom): Review the raw Hex/ASCII data.
+
+
+
+
+
+
+
+🌐 Lab 5: DNS Investigation
+
+Step 1: Click the Blue Shark Fin 🦈 to start a new capture (select Continue without Saving).
+
+Step 2: In cmd, run nslookup google.com and nslookup github.com.
+
+Step 3: Stop the capture 🟥.
+
+Step 4: Apply filter: dns.
+
+Step 5: Select a Standard query packet. Expand Domain Name System (query) -> Queries to see the requested domain.
+
+Step 6: Select a Standard query response packet. Expand Domain Name System (response) -> Answers to see the returned IP address.
+
+
+
+
+
+
+🕸️ Lab 6: Website Traffic (HTTP)
+
+Step 1: Start a new capture 🦈.
+
+Step 2: Open a browser and visit http://neverssl.com.
+
+Step 3: Stop the capture 🟥.
+
+Step 4: Apply filter: http.
+
+Step 5: Select the GET / HTTP/1.1 packet.
+
+Step 6: Expand Hypertext Transfer Protocol in the middle pane to view cleartext data like Host and User-Agent.
+
+
+
+
+
+
+
+🤝 Lab 7: TCP 3-Way Handshake
+
+Step 1: Using the capture from Lab 6, clear the filter bar.
+
+Step 2: Apply filter: tcp and ip.addr == [IP_of_neverssl.com].
+
+Step 3: Locate the first 3 packets of the connection at the top.
+
+Step 4: Observe the Info column for the handshake sequence: SYN ➔ SYN, ACK ➔ ACK.
+
+
+
+
+
+
+
+
+
+🕵️‍♂️ Lab 8: Secret Chat Server
+
+Step 1: Open cmd (Terminal 1) and start a server: ncat -lvp 4444.
+
+Step 2: Start a new Wireshark capture 🦈 on "Adapter for loopback traffic capture".
+
+Step 3: Open a second cmd (Terminal 2) and connect: ncat 127.0.0.1 4444.
+
+Step 4: Type messages in Terminal 2 (e.g., Hello Server, Secret Data) and hit Enter.
+
+Step 5: Stop the capture 🟥.
+
+Step 6: Apply filter: tcp.port == 4444.
+
+Step 7: Right-click any packet with a PSH, ACK flag ➔ select Follow ➔ TCP Stream to read the intercepted chat.
