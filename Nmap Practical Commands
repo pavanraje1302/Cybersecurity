@@ -1,0 +1,529 @@
+# Nmap Command Reference with Flag Explanations
+
+## What is Nmap?
+
+**Nmap (Network Mapper)** is an open-source network scanning and reconnaissance tool used to:
+
+- Discover live hosts
+- Scan ports
+- Identify services
+- Detect operating systems
+- Perform vulnerability assessment
+- Generate security reports
+
+---
+
+# Nmap Command Structure
+
+```bash
+nmap [flags/options] target
+```
+
+Example:
+
+```bash
+nmap -sV 192.168.1.10
+```
+
+Meaning:
+
+```text
+nmap     → Network scanning tool
+-sV      → Service version detection
+192.168.1.10 → Target IP address
+```
+
+---
+
+# Common Nmap Flags
+
+| Flag | Full Form | Purpose |
+|--------|------------|----------|
+| -sn | Ping Scan | Host discovery only |
+| -sS | SYN Scan | Stealth TCP scan |
+| -sT | TCP Connect Scan | Full TCP connection |
+| -sU | UDP Scan | Scan UDP ports |
+| -sV | Version Detection | Detect service versions |
+| -O | OS Detection | Detect operating system |
+| -A | Aggressive Scan | OS + Version + Scripts + Traceroute |
+| -p | Port | Specify ports |
+| -T4 | Timing Template | Faster scanning |
+| -oN | Output Normal | Save results to text file |
+| --script | NSE Script | Run Nmap scripts |
+| --script=vuln | Vulnerability Scripts | Check for vulnerabilities |
+
+---
+
+# Practical 1: Check Nmap Version
+
+## Command
+
+```bash
+nmap --version
+```
+
+### Flag Explanation
+
+| Part | Meaning |
+|--------|----------|
+| --version | Display installed version |
+
+### Output Shows
+
+```text
+Nmap Version
+Compiled Libraries
+OpenSSL Version
+```
+
+---
+
+# Practical 2: Host Discovery
+
+## Objective
+
+Check whether a host is alive.
+
+### Command
+
+```bash
+sudo nmap -sn 192.168.1.10
+```
+
+### Flag Explanation
+
+| Flag | Meaning |
+|--------|----------|
+| -s | Scan |
+| -n | No Port Scan |
+
+### What Nmap Does
+
+```text
+Sends discovery packets
+Checks if host responds
+No port scanning performed
+```
+
+### Output Shows
+
+```text
+Host is up
+Latency
+MAC Address (sometimes)
+```
+
+---
+
+# Practical 3: Scan Live Hosts in Network
+
+## Command
+
+```bash
+ip addr show
+```
+
+Find:
+
+```text
+192.168.1.25/24
+```
+
+Network:
+
+```text
+192.168.1.0/24
+```
+
+---
+
+### Scan Entire Network
+
+```bash
+sudo nmap -sn 192.168.1.0/24
+```
+
+### What It Shows
+
+```text
+Live Devices
+IP Addresses
+Host Status
+```
+
+---
+
+# Practical 4: SYN Scan (Stealth Scan)
+
+## Command
+
+```bash
+sudo nmap -sS -p 1-1000 192.168.1.10
+```
+
+### Flag Explanation
+
+| Flag | Meaning |
+|--------|----------|
+| -sS | SYN Scan |
+| -p | Port Selection |
+| 1-1000 | Scan ports 1 through 1000 |
+
+### What Nmap Does
+
+```text
+Sends SYN packet
+Checks response
+Does not complete TCP handshake
+```
+
+### Output Shows
+
+```text
+Open Ports
+Closed Ports
+Filtered Ports
+```
+
+---
+
+# Practical 5: TCP Connect Scan
+
+## Command
+
+```bash
+sudo nmap -sT -p 22,80 192.168.1.10
+```
+
+### Flag Explanation
+
+| Flag | Meaning |
+|--------|----------|
+| -sT | TCP Connect Scan |
+| -p | Selected Ports |
+
+### What Nmap Does
+
+```text
+Completes full TCP handshake
+More visible than SYN scan
+```
+
+### Output Shows
+
+```text
+Port Number
+State
+Service Name
+```
+
+Example:
+
+```text
+22/tcp open ssh
+80/tcp open http
+```
+
+---
+
+# Practical 6: Service & Version Detection
+
+## Command
+
+```bash
+sudo nmap -sS -sV -p 22,80,139,445 192.168.1.10
+```
+
+### Flag Explanation
+
+| Flag | Meaning |
+|--------|----------|
+| -sS | SYN Scan |
+| -sV | Version Detection |
+| -p | Specific Ports |
+
+### What Nmap Does
+
+```text
+Scans ports
+Connects to service
+Collects version information
+```
+
+### Output Shows
+
+```text
+OpenSSH 9.x
+Apache 2.4.x
+SMB Version
+NetBIOS Service
+```
+
+---
+
+# Practical 7: Operating System Detection
+
+## Command
+
+```bash
+sudo nmap -O 192.168.1.10
+```
+
+### Flag Explanation
+
+| Flag | Meaning |
+|--------|----------|
+| -O | Operating System Detection |
+
+### What Nmap Does
+
+```text
+Analyzes TCP/IP behavior
+Compares signatures
+Guesses operating system
+```
+
+### Output Shows
+
+```text
+Linux
+Windows
+Unix
+Router OS
+```
+
+---
+
+# Practical 8: NSE (Nmap Scripting Engine)
+
+## Command
+
+```bash
+sudo nmap -sS -sV --script=default 192.168.1.10
+```
+
+### Flag Explanation
+
+| Flag | Meaning |
+|--------|----------|
+| --script | Run NSE Scripts |
+| default | Safe default scripts |
+
+### What Nmap Does
+
+```text
+Runs built-in scripts
+Collects extra information
+```
+
+### Output Shows
+
+```text
+Service Information
+Banner Information
+Configuration Details
+```
+
+---
+
+# Practical 9: Vulnerability Scan
+
+## Command
+
+```bash
+sudo nmap -sV --script=vuln -p 21,80,443 192.168.1.10
+```
+
+### Flag Explanation
+
+| Flag | Meaning |
+|--------|----------|
+| -sV | Service Version Detection |
+| --script=vuln | Vulnerability Scripts |
+| -p | Selected Ports |
+
+### What Nmap Does
+
+```text
+Checks known vulnerabilities
+Matches service versions
+```
+
+### Output Shows
+
+```text
+Security Warnings
+Possible Vulnerabilities
+CVE References
+```
+
+---
+
+# Practical 10: UDP Scan
+
+## Command
+
+```bash
+sudo nmap -sU -p 53,161 192.168.1.10
+```
+
+### Flag Explanation
+
+| Flag | Meaning |
+|--------|----------|
+| -sU | UDP Scan |
+| -p | Port Selection |
+
+### What Nmap Does
+
+```text
+Scans UDP services
+Checks UDP responses
+```
+
+### Output Shows
+
+```text
+DNS
+SNMP
+NTP
+DHCP
+```
+
+---
+
+# Practical 11: Timing Template
+
+## Command
+
+```bash
+sudo nmap -T4 -sS -p 1-200 192.168.1.10
+```
+
+### Flag Explanation
+
+| Flag | Meaning |
+|--------|----------|
+| -T4 | Faster Scan Speed |
+| -sS | SYN Scan |
+| -p | Port Range |
+
+### Timing Levels
+
+| Level | Description |
+|---------|-------------|
+| T0 | Paranoid |
+| T1 | Sneaky |
+| T2 | Polite |
+| T3 | Normal |
+| T4 | Fast |
+| T5 | Insane |
+
+### Output Shows
+
+Same scan results but faster.
+
+---
+
+# Practical 12: Save Scan Results
+
+## Command
+
+```bash
+sudo nmap -sS -sV -oN result.txt 192.168.1.10
+```
+
+### Flag Explanation
+
+| Flag | Meaning |
+|--------|----------|
+| -oN | Output Normal Format |
+
+### What Nmap Does
+
+```text
+Saves scan results
+Creates report file
+```
+
+### View Report
+
+```bash
+cat result.txt
+```
+
+---
+
+# Practical 13: Detailed Network Scan
+
+## Command
+
+```bash
+sudo nmap -sS -p 1-1000 -T4 192.168.1.0/24 -oN scan_quick.txt
+```
+
+### Flag Breakdown
+
+| Part | Meaning |
+|--------|----------|
+| -sS | SYN Scan |
+| -p 1-1000 | Scan first 1000 ports |
+| -T4 | Fast Scan |
+| 192.168.1.0/24 | Entire subnet |
+| -oN | Save results |
+
+### Output Shows
+
+```text
+Live Hosts
+Open Ports
+Services
+Network Information
+```
+
+---
+
+# Common Ports Every Student Should Remember
+
+| Port | Service |
+|--------|----------|
+| 20 | FTP Data |
+| 21 | FTP |
+| 22 | SSH |
+| 23 | Telnet |
+| 25 | SMTP |
+| 53 | DNS |
+| 80 | HTTP |
+| 110 | POP3 |
+| 139 | NetBIOS |
+| 143 | IMAP |
+| 443 | HTTPS |
+| 445 | SMB |
+| 3306 | MySQL |
+| 3389 | RDP |
+
+---
+
+# Nmap Learning Flow
+
+```text
+Check Network
+      ↓
+Host Discovery
+      ↓
+Port Scanning
+      ↓
+Service Detection
+      ↓
+OS Detection
+      ↓
+NSE Scripts
+      ↓
+Vulnerability Scanning
+      ↓
+UDP Scanning
+      ↓
+Report Generation
+      ↓
+Security Assessment
+```
