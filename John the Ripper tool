@@ -1,0 +1,30 @@
+Pdf Password Crack:
+pdf2john /path of file > /path where new hash file save
+it gives hash
+
+check hash file
+cat > hash file name
+
+john file name
+it gives password
+
+
+
+
+
+
+
+
+Linux Password Crack:
+copy user info in passwd file
+copy password info in shadow file
+
+then 
+merge this into unshadow using following command,
+unshadow passwd shadow > unshadow.txt
+
+check unshadow file
+cat unshadow.txt
+
+try to crack linux password
+sudo john --worldlist=/usr/share/wordlists/gin-password.txt --format=crypt unshadow.txt
