@@ -1,16 +1,26 @@
-Pdf Password Crack:
-pdf2john /path of file > /path where new hash file save
-it gives hash
+# PDF Password Crack with John the Ripper
 
-check hash file
-cat > hash file name
+# 1. Extract the PDF hash
+pdf2john.py protected.pdf > pdf.hash
 
-john file name
-it gives password
+# 2. Verify the hash was created
+cat pdf.hash
+
+# 3. Start cracking
+john pdf.hash
+
+# Optional: Use a wordlist
+john --wordlist=/path/to/wordlist.txt pdf.hash
+
+# 4. Show the recovered password
+john --show pdf.hash
 
 
-
-
+Example: 
+pdf2john.py secret.pdf > secret.hash
+cat secret.hash
+john --wordlist=rockyou.txt secret.hash
+john --show secret.hash
 
 
 
@@ -27,4 +37,4 @@ check unshadow file
 cat unshadow.txt
 
 try to crack linux password
-sudo john --worldlist=/usr/share/wordlists/gin-password.txt --format=crypt unshadow.txt
+john --wordlist=/usr/share/wordlists/gin-password.txt unshadow.txt
