@@ -1,4 +1,4 @@
-# PDF Password Crack with John the Ripper
+# PDF Password Auditing with John the Ripper
 
 # 1. Extract the PDF hash
 pdf2john.py protected.pdf > pdf.hash
