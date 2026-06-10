@@ -1,0 +1,9 @@
+1. pdf2john /path of file > /path where new hash file save
+it gives hash v
+
+2. cat > hash file name
+for view the hash file
+
+john <file name>
+it gives password
+
