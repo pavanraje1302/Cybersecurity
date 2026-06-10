@@ -1,0 +1,131 @@
+# Practical 1: Local SSH Password Testing
+
+## Objective
+
+Understand how a dictionary attack works and why weak passwords are a security risk.
+
+---
+
+## Step 1: Create a Test User
+
+Create a new user account for testing.
+
+```bash
+sudo adduser student1
+```
+
+When prompted, set the password:
+
+```text
+cyber123
+```
+
+Verify the user exists:
+
+```bash
+id student1
+```
+
+---
+
+## Step 2: Create a Password List
+
+Create a file containing commonly used passwords.
+
+```bash
+vim passwords.txt
+```
+
+Add the following passwords:
+
+```text
+admin
+123456
+password
+welcome
+cyber123
+```
+
+Save and exit:
+
+Verify the file contents:
+
+```bash
+cat passwords.txt
+```
+
+Expected Output:
+
+```text
+admin
+123456
+password
+welcome
+cyber123
+```
+
+---
+
+## Step 3: Start the SSH Service
+
+Start the SSH server.
+
+```bash
+sudo systemctl start ssh
+```
+
+Verify the service is running:
+
+```bash
+sudo systemctl status ssh
+```
+
+Expected Status:
+
+```text
+active (running)
+```
+
+---
+
+## Step 4: Perform Password Testing with Hydra
+
+Run Hydra against the local SSH service.
+
+```bash
+hydra -t 4 -l student1 -P passwords.txt ssh://127.0.0.1
+```
+
+### Command Breakdown
+
+| Option | Description |
+|----------|----------|
+| `-t 4` | Use 4 parallel tasks |
+| `-l student1` | Target username |
+| `-P passwords.txt` | Password list file |
+| `ssh://` | Target service |
+| `127.0.0.1` | Localhost (current machine) |
+
+---
+
+## Expected Observation
+
+Hydra will try each password from the list against the SSH service.
+
+Example:
+
+```text
+student1 : admin
+student1 : 123456
+student1 : password
+student1 : welcome
+student1 : cyber123
+```
+
+If the correct password is found, Hydra displays:
+
+```text
+[22][ssh] host: 127.0.0.1
+login: student1
+password: cyber123
+```
