@@ -1,141 +1,99 @@
-# Bash Programming Practical
+# Bash Programming Assignments with Solutions
 
+---
 
+# Assignment 1: Student Information Script
 
-## Practical 1: Hello World Program
+## Question
 
-### Objective
+Write a Bash script that accepts Student Name, Roll Number, and Course Name from the user and displays the entered information.
 
-Learn how to create and execute the first Bash script.
-
-### Theory
-
-A Bash script is a text file containing Linux commands that are executed sequentially. The first line of every Bash script usually contains the interpreter path.
-
-### Script
+## Solution
 
 ```bash
 #!/bin/bash
 
-echo "Hello Students"
-echo "Welcome to Bash Programming"
-```
-
-### Explanation
-
-| Statement   | Description                |
-| ----------- | -------------------------- |
-| #!/bin/bash | Specifies Bash interpreter |
-| echo        | Displays text on terminal  |
-
-### Execution
-
-```bash
-chmod +x hello.sh
-./hello.sh
-```
-
-### Output
-
-```text
-Hello Students
-Welcome to Bash Programming
-```
-
-
-
-
-# Practical 2: Variables
-
-## Objective
-
-Understand variable declaration and usage.
-
-### Theory
-
-Variables store information that can be reused throughout the script.
-
-### Script
-
-```bash
-#!/bin/bash
-
-name="Shivraj"
-course="Cybersecurity"
-
-echo "Student Name: $name"
-echo "Course: $course"
-```
-
-### Explanation
-
-| Statement      | Description              |
-| -------------- | ------------------------ |
-| name="Shivraj" | Creates variable         |
-| $name          | Retrieves variable value |
-
-### Output
-
-```text
-Student Name: Shivraj
-Course: Cybersecurity
-```
-
-
-
-
-
-# Practical 3: User Input
-
-## Objective
-
-Accept input from users.
-
-### Theory
-
-The read command accepts input from the keyboard and stores it in a variable.
-
-### Script
-
-```bash
-#!/bin/bash
-
-echo "Enter Your Name:"
+echo "Enter Student Name:"
 read name
 
-echo "Welcome $name"
+echo "Enter Roll Number:"
+read roll
+
+echo "Enter Course:"
+read course
+
+echo ""
+echo "----- Student Details -----"
+echo "Name     : $name"
+echo "Roll No. : $roll"
+echo "Course   : $course"
 ```
 
-### Execution
+
+# Assignment 2: Area Calculator
+
+## Question
+
+Write a Bash script to calculate the area of a rectangle.
+
+## Solution
 
 ```bash
-chmod +x input.sh
-./input.sh
+#!/bin/bash
+
+echo "Enter Length:"
+read length
+
+echo "Enter Width:"
+read width
+
+area=$((length * width))
+
+echo "Area = $area"
 ```
 
-### Output
 
-```text
-Enter Your Name:
-Rahul
 
-Welcome Rahul
+# Assignment 3: Grade Calculator
+
+## Question
+
+Accept marks from the user and display the corresponding grade.
+
+## Solution
+
+```bash
+#!/bin/bash
+
+echo "Enter Marks:"
+read marks
+
+if [ $marks -ge 90 ]
+then
+    echo "Grade = A"
+elif [ $marks -ge 75 ]
+then
+    echo "Grade = B"
+elif [ $marks -ge 60 ]
+then
+    echo "Grade = C"
+elif [ $marks -ge 40 ]
+then
+    echo "Grade = D"
+else
+    echo "Fail"
+fi
 ```
 
 
 
+# Assignment 4: Largest Number Finder
 
-# Practical 4: Simple Calculator
+## Question
 
-## Objective
+Write a script to find the largest of two numbers.
 
-Perform arithmetic operations.
-
-### Theory
-
-Bash supports arithmetic using the (( )) operator.
-
-### Script
+## Solution
 
 ```bash
 #!/bin/bash
@@ -146,319 +104,185 @@ read a
 echo "Enter Second Number:"
 read b
 
-echo "Addition = $((a+b))"
-echo "Subtraction = $((a-b))"
-echo "Multiplication = $((a*b))"
-echo "Division = $((a/b))"
-```
-
-### Sample Output
-
-```text
-Enter First Number:
-20
-
-Enter Second Number:
-10
-
-Addition = 30
-Subtraction = 10
-Multiplication = 200
-Division = 2
-```
-
-
-
----
-
-# Practical 5: Voting Eligibility Checker
-
-## Objective
-
-Implement decision making using if-else.
-
-### Theory
-
-Conditional statements allow scripts to make decisions based on conditions.
-
-### Script
-
-```bash
-#!/bin/bash
-
-echo "Enter Age:"
-read age
-
-if [ $age -ge 18 ]
+if [ $a -gt $b ]
 then
-    echo "Eligible to Vote"
+    echo "Largest Number = $a"
 else
-    echo "Not Eligible"
+    echo "Largest Number = $b"
 fi
 ```
 
-### Output
-
-```text
-Enter Age:
-20
-
-Eligible to Vote
-```
 
 
+# Assignment 5: Sum of First N Numbers
 
+## Question
 
-# Practical 6: Even or Odd Number
+Write a Bash script to calculate the sum of numbers from 1 to N.
 
-## Objective
-
-Use arithmetic and conditions together.
-
-### Script
+## Solution
 
 ```bash
 #!/bin/bash
 
-echo "Enter Number:"
-read num
+echo "Enter N:"
+read n
 
-if [ $((num%2)) -eq 0 ]
-then
-    echo "Even Number"
-else
-    echo "Odd Number"
-fi
-```
+sum=0
 
-### Output
-
-```text
-Enter Number:
-8
-
-Even Number
-```
-
-
-
-
-# Practical 7: For Loop
-
-## Objective
-
-Execute repetitive tasks automatically.
-
-### Theory
-
-Loops are used to repeat commands multiple times.
-
-### Script
-
-```bash
-#!/bin/bash
-
-for i in {1..5}
+for ((i=1;i<=n;i++))
 do
-    echo "Number = $i"
+    sum=$((sum+i))
 done
-```
 
-### Output
-
-```text
-Number = 1
-Number = 2
-Number = 3
-Number = 4
-Number = 5
+echo "Sum = $sum"
 ```
 
 
 
+# Assignment 6: Factorial Calculator
 
-# Practical 8: Multiplication Table Generator
+## Question
 
-## Objective
+Write a Bash script to calculate the factorial of a given number.
 
-Combine loops and arithmetic.
-
-### Script
+## Solution
 
 ```bash
 #!/bin/bash
 
 echo "Enter Number:"
 read num
+
+fact=1
+
+for ((i=1;i<=num;i++))
+do
+    fact=$((fact*i))
+done
+
+echo "Factorial = $fact"
+```
+
+
+
+# Assignment 7: Password Verification
+
+## Question
+
+Create a script that checks whether the entered password matches a predefined password.
+
+## Solution
+
+```bash
+#!/bin/bash
+
+password="admin123"
+
+echo "Enter Password:"
+read pass
+
+if [ "$pass" = "$password" ]
+then
+    echo "Access Granted"
+else
+    echo "Access Denied"
+fi
+```
+
+
+
+# Assignment 8: Create Multiple Files
+
+## Question
+
+Create 10 text files and display the total count.
+
+## Solution
+
+```bash
+#!/bin/bash
 
 for i in {1..10}
 do
-    echo "$num x $i = $((num*i))"
+    touch test$i.txt
 done
-```
 
-### Output
+count=$(ls test*.txt | wc -l)
 
-```text
-5 x 1 = 5
-5 x 2 = 10
-5 x 3 = 15
-...
-5 x 10 = 50
+echo "$count files created successfully."
 ```
 
 
 
+# Assignment 9: Number Pattern Generator
 
-# Practical 9: File Existence Checker
+## Question
 
-## Objective
+Display the following pattern:
 
-Check whether a file exists.
+1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5
 
-### Theory
-
-Linux provides file test operators.
-
-### Script
+## Solution
 
 ```bash
 #!/bin/bash
 
-echo "Enter Filename:"
-read file
-
-if [ -f "$file" ]
-then
-    echo "File Exists"
-else
-    echo "File Not Found"
-fi
-```
-
-### Output
-
-```text
-Enter Filename:
-report.txt
-
-File Exists
-```
-
-
-
-
-# Practical 10: System Information Script
-
-## Objective
-
-Collect system information.
-
-### Script
-
-```bash
-#!/bin/bash
-
-echo "Current User:"
-whoami
-
-echo ""
-
-echo "Hostname:"
-hostname
-
-echo ""
-
-echo "Date:"
-date
-
-echo ""
-
-echo "Current Directory:"
-pwd
-```
-
-### Output
-
-```text
-Current User:
-student
-
-Hostname:
-kali
-
-Date:
-Thu Jun 18 10:00:00 IST 2026
-
-Current Directory:
-/home/student
-```
-
-
-
-
-# Practical 11: Create Multiple Files
-
-## Objective
-
-Automate file creation.
-
-### Script
-
-```bash
-#!/bin/bash
-
-for i in {1..5}
+for ((i=1;i<=5;i++))
 do
-    touch file$i.txt
+    for ((j=1;j<=i;j++))
+    do
+        echo -n "$j "
+    done
+    echo
 done
-
-echo "Files Created Successfully"
-```
-
-### Verify
-
-```bash
-ls
-```
-
-### Result
-
-```text
-file1.txt
-file2.txt
-file3.txt
-file4.txt
-file5.txt
 ```
 
 
 
-# Practical 12: Functions
+# Assignment 10: Menu Driven Calculator
 
-## Objective
+## Question
 
-Create reusable blocks of code.
+Create a menu-driven calculator with Addition, Subtraction, Multiplication, Division, and Exit options.
 
-### Theory
-
-Functions help organize code and reduce repetition.
-
-### Script
+## Solution
 
 ```bash
 #!/bin/bash
 
-welcome()
-{
-    echo "Welcome to CDAC"
-}
+while true
+do
+    echo "1. Addition"
+    echo "2. Subtraction"
+    echo "3. Multiplication"
+    echo "4. Division"
+    echo "5. Exit"
 
-welcome
-```
+    echo "Enter Choice:"
+    read choice
 
-### Output
+    if [ $choice -eq 5 ]
+    then
+        break
+    fi
 
-```text
-Welcome to CDAC
+    echo "Enter First Number:"
+    read a
+
+    echo "Enter Second Number:"
+    read b
+
+    case $choice in
+        1) echo "Result = $((a+b))" ;;
+        2) echo "Result = $((a-b))" ;;
+        3) echo "Result = $((a*b))" ;;
+        4) echo "Result = $((a/b))" ;;
+        *) echo "Invalid Choice" ;;
+    esac
+done
 ```
