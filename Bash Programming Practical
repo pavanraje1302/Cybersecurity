@@ -1,0 +1,464 @@
+# Bash Programming Practical
+
+
+
+## Practical 1: Hello World Program
+
+### Objective
+
+Learn how to create and execute the first Bash script.
+
+### Theory
+
+A Bash script is a text file containing Linux commands that are executed sequentially. The first line of every Bash script usually contains the interpreter path.
+
+### Script
+
+```bash
+#!/bin/bash
+
+echo "Hello Students"
+echo "Welcome to Bash Programming"
+```
+
+### Explanation
+
+| Statement   | Description                |
+| ----------- | -------------------------- |
+| #!/bin/bash | Specifies Bash interpreter |
+| echo        | Displays text on terminal  |
+
+### Execution
+
+```bash
+chmod +x hello.sh
+./hello.sh
+```
+
+### Output
+
+```text
+Hello Students
+Welcome to Bash Programming
+```
+
+
+
+
+# Practical 2: Variables
+
+## Objective
+
+Understand variable declaration and usage.
+
+### Theory
+
+Variables store information that can be reused throughout the script.
+
+### Script
+
+```bash
+#!/bin/bash
+
+name="Shivraj"
+course="Cybersecurity"
+
+echo "Student Name: $name"
+echo "Course: $course"
+```
+
+### Explanation
+
+| Statement      | Description              |
+| -------------- | ------------------------ |
+| name="Shivraj" | Creates variable         |
+| $name          | Retrieves variable value |
+
+### Output
+
+```text
+Student Name: Shivraj
+Course: Cybersecurity
+```
+
+
+
+
+
+# Practical 3: User Input
+
+## Objective
+
+Accept input from users.
+
+### Theory
+
+The read command accepts input from the keyboard and stores it in a variable.
+
+### Script
+
+```bash
+#!/bin/bash
+
+echo "Enter Your Name:"
+read name
+
+echo "Welcome $name"
+```
+
+### Execution
+
+```bash
+chmod +x input.sh
+./input.sh
+```
+
+### Output
+
+```text
+Enter Your Name:
+Rahul
+
+Welcome Rahul
+```
+
+
+
+
+# Practical 4: Simple Calculator
+
+## Objective
+
+Perform arithmetic operations.
+
+### Theory
+
+Bash supports arithmetic using the (( )) operator.
+
+### Script
+
+```bash
+#!/bin/bash
+
+echo "Enter First Number:"
+read a
+
+echo "Enter Second Number:"
+read b
+
+echo "Addition = $((a+b))"
+echo "Subtraction = $((a-b))"
+echo "Multiplication = $((a*b))"
+echo "Division = $((a/b))"
+```
+
+### Sample Output
+
+```text
+Enter First Number:
+20
+
+Enter Second Number:
+10
+
+Addition = 30
+Subtraction = 10
+Multiplication = 200
+Division = 2
+```
+
+
+
+---
+
+# Practical 5: Voting Eligibility Checker
+
+## Objective
+
+Implement decision making using if-else.
+
+### Theory
+
+Conditional statements allow scripts to make decisions based on conditions.
+
+### Script
+
+```bash
+#!/bin/bash
+
+echo "Enter Age:"
+read age
+
+if [ $age -ge 18 ]
+then
+    echo "Eligible to Vote"
+else
+    echo "Not Eligible"
+fi
+```
+
+### Output
+
+```text
+Enter Age:
+20
+
+Eligible to Vote
+```
+
+
+
+
+# Practical 6: Even or Odd Number
+
+## Objective
+
+Use arithmetic and conditions together.
+
+### Script
+
+```bash
+#!/bin/bash
+
+echo "Enter Number:"
+read num
+
+if [ $((num%2)) -eq 0 ]
+then
+    echo "Even Number"
+else
+    echo "Odd Number"
+fi
+```
+
+### Output
+
+```text
+Enter Number:
+8
+
+Even Number
+```
+
+
+
+
+# Practical 7: For Loop
+
+## Objective
+
+Execute repetitive tasks automatically.
+
+### Theory
+
+Loops are used to repeat commands multiple times.
+
+### Script
+
+```bash
+#!/bin/bash
+
+for i in {1..5}
+do
+    echo "Number = $i"
+done
+```
+
+### Output
+
+```text
+Number = 1
+Number = 2
+Number = 3
+Number = 4
+Number = 5
+```
+
+
+
+
+# Practical 8: Multiplication Table Generator
+
+## Objective
+
+Combine loops and arithmetic.
+
+### Script
+
+```bash
+#!/bin/bash
+
+echo "Enter Number:"
+read num
+
+for i in {1..10}
+do
+    echo "$num x $i = $((num*i))"
+done
+```
+
+### Output
+
+```text
+5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+...
+5 x 10 = 50
+```
+
+
+
+
+# Practical 9: File Existence Checker
+
+## Objective
+
+Check whether a file exists.
+
+### Theory
+
+Linux provides file test operators.
+
+### Script
+
+```bash
+#!/bin/bash
+
+echo "Enter Filename:"
+read file
+
+if [ -f "$file" ]
+then
+    echo "File Exists"
+else
+    echo "File Not Found"
+fi
+```
+
+### Output
+
+```text
+Enter Filename:
+report.txt
+
+File Exists
+```
+
+
+
+
+# Practical 10: System Information Script
+
+## Objective
+
+Collect system information.
+
+### Script
+
+```bash
+#!/bin/bash
+
+echo "Current User:"
+whoami
+
+echo ""
+
+echo "Hostname:"
+hostname
+
+echo ""
+
+echo "Date:"
+date
+
+echo ""
+
+echo "Current Directory:"
+pwd
+```
+
+### Output
+
+```text
+Current User:
+student
+
+Hostname:
+kali
+
+Date:
+Thu Jun 18 10:00:00 IST 2026
+
+Current Directory:
+/home/student
+```
+
+
+
+
+# Practical 11: Create Multiple Files
+
+## Objective
+
+Automate file creation.
+
+### Script
+
+```bash
+#!/bin/bash
+
+for i in {1..5}
+do
+    touch file$i.txt
+done
+
+echo "Files Created Successfully"
+```
+
+### Verify
+
+```bash
+ls
+```
+
+### Result
+
+```text
+file1.txt
+file2.txt
+file3.txt
+file4.txt
+file5.txt
+```
+
+
+
+# Practical 12: Functions
+
+## Objective
+
+Create reusable blocks of code.
+
+### Theory
+
+Functions help organize code and reduce repetition.
+
+### Script
+
+```bash
+#!/bin/bash
+
+welcome()
+{
+    echo "Welcome to CDAC"
+}
+
+welcome
+```
+
+### Output
+
+```text
+Welcome to CDAC
+```
